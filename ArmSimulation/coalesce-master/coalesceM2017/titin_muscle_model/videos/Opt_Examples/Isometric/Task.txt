@@ -1,0 +1,11 @@
+Isometric Contraction
+
+Start at rest
+
+Rotate 'Pulley' by 3pi/4 radians
+
+Finish with zero velocity
+
+Objective: Minimize time-integral of Fce2
+
+Video : 10% Speed

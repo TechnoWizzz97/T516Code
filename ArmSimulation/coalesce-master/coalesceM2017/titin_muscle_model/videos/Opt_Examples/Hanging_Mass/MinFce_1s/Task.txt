@@ -1,0 +1,15 @@
+Hanging Weight Problem
+
+Lift a mass fixed at xm a prescribed distance
+
+mass = 1.5kg
+g = 9.81
+distance = 0.02m
+
+Start and finish with 0 velocities
+
+Finish IN EXACTLY 1 s
+
+Objective : minimize time-integral of Fce2
+
+Video 25% Speed

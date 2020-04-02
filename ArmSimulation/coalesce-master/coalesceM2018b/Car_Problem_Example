@@ -1,0 +1,54 @@
+clc;
+clear all;
+close all;
+
+m = 8;
+
+nNodes = 101;  % # of discrete time observation points
+
+nlp = DirectCollocation(nNodes); % Created the problem object
+
+%% Begin defining problem variables
+
+t = nlp.addTime;  % Both adds a variable to the nlp object while providing  a handle
+
+% Add states
+                    %  (Initial Guess, lower bound, upper bound,
+x = nlp.addState(0, -Inf, Inf, 'Description','State: x', 'Length', nNodes); % Using 'state' over 'variable' allows for addition of derivative constraints 
+dx = nlp.addState(0, -Inf, Inf, 'Description', 'State: dx', 'Length', nNodes);
+
+% Add Inputs
+f = nlp.addInput(0, -Inf, Inf, 'Description', 'Input: f','Length',nNodes);
+
+% Add dynamics
+nlp.addPdeConstraint(x, dx, t, 'Method', 'Explicit Euler','Description','dx dynamics');
+nlp.addPdeConstraint(dx, f/m, t, 'Method', 'Explicit Euler','Description','ddx dynamics');
+
+nlp.addConstraint(-50, f, 50);  % force limit (?)
+nlp.addConstraint(-5, dx, 5); % speed limit (?)
+nlp.addConstraint(0, x.initial, 0); % start at rest (?)
+nlp.addConstraint(0, dx.initial, 0);
+nlp.addConstraint(0, dx.final, 0);
+nlp.addConstraint(10, x.final, 10); %finish
+
+nlp.addObjective(t, 'Description', 'Minimize Time');
+
+optim = Ipopt(nlp);
+optim.export;
+optim.solve;
+
+
+xsol = squeeze(eval(x));
+dxsol = squeeze(eval(dx));
+fsol = squeeze(eval(f));
+tsol = linspace(0, squeeze(eval(t)), nNodes);
+
+subplot(3,1,1)
+plot(tsol, xsol)
+ylabel('x');
+subplot(3,1,2);
+plot(tsol, dxsol);
+ylabel('dx');
+subplot(3,1,3);
+plot(tsol,fsol);
+ylabel('f');

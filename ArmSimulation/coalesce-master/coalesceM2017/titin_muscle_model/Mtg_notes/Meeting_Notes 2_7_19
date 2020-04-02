@@ -1,0 +1,17 @@
+For isometric... CONTRACTILE ELEMENT FIXED!!!
+
+minimize contributions of series elasticity
+
+activation is adjusted to reach a steady-state force output
+    just enough to reach toe force but not act against the load
+    
+Activation/deactivation kinetics
+    twitch results in force profile which happens over duration
+        asymmetric profile (peaks faster than declines)
+        
+        Better Objective Function?
+            Monica says save for later
+            
+
+Tune system so that period of oscillations is in sync with the task at hand
+

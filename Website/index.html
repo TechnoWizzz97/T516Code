@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <title>Senior Design Team 516</title>
 <meta charset="UTF-8">
@@ -6,161 +6,445 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-	
-body {font-family: "Arial", sans-serif}
-	
-hr
-{ 
-	display: block;
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-	margin-left: auto;
-	margin-right: auto;
-	border-style: inset;
-	border-width: 5px;
-	border-color: black;
-}
-h1
-{
-	white-space: pre;
-}
 
-p1 {
-	color: black;
-	font-size: 20px;
-}
-p {
-	color: black;
-	font-size: 15px;
-	text-justify: auto;
-}
-.center
-{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-p3
-{
-	text-align: center;
-	align-content: center;
-	text-decoration: bold;
-	font-size: 20px
-}
+
+    body {
+        font-family: "Arial", sans-serif
+    }
+
+    hr {
+        display: block;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        margin-left: auto;
+        margin-right: auto;
+        border-style: inset;
+        border-width: 5px;
+        border-color: black;
+    }
+
+    h1 {
+        white-space: pre;
+    }
+
+    p1 {
+        color: black;
+        font-size: 20px;
+    }
+
+    p {
+        color: black;
+        font-size: 15px;
+        text-justify: auto;
+    }
+
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+
+    p3 {
+        text-align: center;
+        align-content: center;
+        text-decoration: bold;
+        font-size: 20px
+    }
+
+    /* Set additional styling options for the columns */
+    .column {
+        float: left;
+    }
+
+    /* Set width length for the left, right and middle columns */
+    .left {
+        width: 40%;
+    }
+
+    .middle {
+        width: 0%;
+    }
+
+    .right {
+        width: 60%;
+    }
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Verdana, sans-serif;
+    }
+
+    .mySlides {
+        display: none;
+    }
+
+    img {
+        vertical-align: middle;
+    }
+
+    /* Slideshow container */
+    .slideshow-container {
+        max-width: 1000px;
+        max-height: 1000px;
+        position: absolute;
+        top: 860px;
+        right: -200px;
+        margin: auto;
+    }
+
+    /* Caption text */
+    .text {
+        color: #f2f2f2;
+        font-size: 15px;
+        padding: 8px 12px;
+        position: absolute;
+        bottom: 8px;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Number text (1/3 etc) */
+    .numbertext {
+        color: #f2f2f2;
+        font-size: 12px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+    }
+
+    /* The dots/bullets/indicators */
+    .dot {
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+    }
+
+    .active {
+        background-color: #717171;
+    }
+
+    /* Fading animation */
+    .fade {
+        -webkit-animation-name: fade;
+        -webkit-animation-duration: 1.5s;
+        animation-name: fade;
+        animation-duration: 1.5s;
+    }
+
+    @-webkit-keyframes fade {
+        from {
+            opacity: .4
+        }
+
+        to {
+            opacity: 1
+        }
+    }
+
+    @keyframes fade {
+        from {
+            opacity: .4
+        }
+
+        to {
+            opacity: 1
+        }
+    }
+
+    /* On smaller screens, decrease text size */
+    @media only screen and (max-width: 300px) {
+        .text {
+            font-size: 11px
+        }
+    }
+
+    #buttons {
+        width: 100%;
+        margin-left: 8%;
+    }
+
+        #buttons div {
+            width: 18%;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            border: 0px none;
+            display: inline-block;
+            float: left;
+        }
+
 </style>
 <body>
+    <div class="w3-top">
+        <div class="w3-bar w3-black w3-card w3-cell-row">
+            <a href="#home" class="w3-bar-item w3-button w3-padding-large">HOME</a>
+            <a href="./Pages/Sponsors.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Sponsors</a>
+            <a href="./Pages/Resources.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Resources</a>
+            <a href="./Pages/Team.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Our Team</a>
+            <a href="./Pages/CADModels.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Current CAD Models</a>
+		</div>
+    </div>
 
-<div class="w3-top">
-  <div class="w3-bar w3-black w3-card w3-cell-row">
-    <a href="#home" class="w3-bar-item w3-button w3-padding-large">HOME</a>
-    <a href="#aboutus" class="w3-bar-item w3-button w3-padding-large w3-hide-small">About Us</a>
-    <a href="./Pages/Sponsors.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Sponsors</a>
-    <a href="./Pages/Resources.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Deliverables</a>
-    <a href="./Pages/Team.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Our Team</a>
-  </div>
-</div>
+    <div class="banner">
+        <img class="banner-image" src="img/banner1.svg" style='margin-top:45px; height: 100%; width: 100%; object-fit: contain' />
+    </div>
 
-<div class="center w3-padding-small">
-	<img src="./w3images/F2COE-Square.png" id="HOME" class="w3-round w3-image center" align="center" style="margin-top:50px" style='height: 50%; width: 50%; object-fit: contain'/>
-</div>
+    <div class="row" style="margin-top:100px; margin-left:100px">
+        <div class="column left"
+            <center><h2 class="w3-wide">TEAM 516: CLPS Payload Transport Rover</h2></center>
+            <p class="w3-opacity">
+                <center><i>Vires, Artes, Mores / Excellence is Caring</i></center>
+            </p>
+         <p>
+                NASA wants the ability to move their lunar resources to different sites on the Moon.
+                This is difficult because unlike on Earth, all tools must be either sent to the Moon fully built or must be built on the lunar surface.
+                NASA's goal is to create a tool that can transport their commercial payload to nearby locations on the lunar surface.
+                Team 516 is designing a device that can lift a specified payload with a maximum mass of 300 kilograms off a lunar lander.
+                Once the payload has been lifted from the lander, the device will securely transport the payload to the desired place.
+                The tool can traverse 1.5 kilometers across the lunar surface to NASA’s base. This includes traversing up a 15-degree incline over a distance 31 meters.
+                The final design of the rover uses a titanium body, double A-arm suspension, aluminum mesh wheels, and a 6 degree of freedom robotic arm.
+                The design validation is done through the Simulink model; simulations of the suspension and the robotic arm are used to validate the design.
+                The simulation results give the parameters needed to create a scaled prototype, which acts as a physical proof of concept.
+                The final products are the full-scale assembled simulation and a scaled prototype.
+           </p>
+        </div>
+    </div>
 
-<div class="w3-container w3-content w3-center w3-padding-small" style="margin-top:100px">
-    <h2 class="w3-wide">TEAM 516: CLPS Payload Transport Rover</h2>
-    <p class="w3-opacity"><i>Vires, Artes, Mores / Excellence is Caring</i></p>
-    <strong class="w3-justify">NASA wants the ability to move their lunar resources to different sites on the Moon.
-	This is difficult because unlike on Earth, all tools must be either sent to the Moon fully built or must be built on the lunar surface.
-	NASA's goal is to create a tool that can transport their commercial payload to nearby locations on the lunar surface.
-	Team 516 is designing a device that can lift a specified payload with a maximum mass of 300 kg off a lunar lander.
-	Once the payload has been lifted from the lander, the device will securely transport the payload to the desired place.
-	The tool can traverse 1.5 km across the lunar surface to NASA’s base. This includes traversing up a 15-degree incline over a distance 100 ft.
-	The final design of the rover uses a titanium body, double A-arm suspension, aluminum mesh wheels, and a 6 degree of freedom robotic arm.
-	The design validation is done through the Simulink model; simulations of the suspension and the robotic arm are used to validate the design.
-	The simulation results give the parameters needed to create a scaled prototype, which acts as a physical proof of concept.
-	The final products are the full-scale assembled simulation and a scaled prototype.</strong>
-</div>
-<hr>
-<div class="w3-row w3-container w3-center" style="font-size:36">
-	<p></p>
-</div>
-<div class="w3-row w3-container w3-center" style="font-size:42" id="teammembers">
-	<p class="w3-xxlarge">Team Members</p>
-</div>
-<div class="w3-row w3-container w3-center" style="font-size:36">
-	<p></p>
-</div>
-<hr>
-<!-- The Team Section -->
-<div class="w3-container w3-content w3-center w3-padding-large" style="max-width:800px" id="contact">
-<div class="w3-row w3-padding-16">
-  <div class="w3-quarter">
-	<p>Hannah Rodgers</p>
-	<img src="./w3images/Picture5.jpg" class="w3-round w3-margin-bottom" style="width:70%">
-	<p>Mechanical Engineering</p>
-  </div>
-  <div class="w3-quarter">
-	<p>Jacob Hackett</p>
-	<img src="./w3images/Picture1.jpg" class="w3-round w3-margin-bottom"  style="width:70%">
-	<p>Mechanical Engineering</p>
-  </div>
-  <div class="w3-quarter">
-	<p>Noah Lang</p>
-	<img src="./w3images/Picture3.jpg" class="w3-round w3-margin-bottom" style="width:70%">
-	<p>Mechanical Engineering</p>
-  </div>
-  <div class="w3-quarter">
-	<p>Caleb Jansen</p>
-	<img src="./w3images/Picture2.jpg" class="w3-round w3-margin-bottom" style="width:70%">
-	<p>Computer Engineering</p>
-  </div>
-  <div class="w3-first w3-align-center">
-	<p>Kyle Nulty</p>
-	<img src="./w3images/Picture4.jpg" class="w3-round w3-margin-bottom" style="width:20%" style="height:20%">
-	<p>Computer Engineering</p>
-  </div>
-</div>
-</div>
+    <right>
+        <div class="slideshow-container">
 
-<hr>
-	
-<div class="w3-row w3-container w3-center" style="font-size:36">
-	<p></p>
-</div>
-<div class="w3-row w3-container w3-center" style="font-size:42" id="deliverables">
-	<p class="w3-xxlarge" >Deliverables</p>
-</div>
-<div class="w3-row w3-container w3-center" style="font-size:36">
-	<p></p>
-</div>
+            <div class="mySlides fade">
+                <div class="numbertext"><font color="black">1 / 3</font></div>
+                <img src="./Pictures/car.png" style="margin-right:5%; margin-left:5%; margin-top:2.5%; width:50%">
+                <div class="text"><font color="black">Vehicle Design</font></div>
+            </div>
 
-<hr>
+            <div class="mySlides fade">
+                <div class="numbertext"><font color="black">2 / 3</font></div>
+                <img src="./Pictures/arm.png" style="margin-right:5%; margin-left:5%; margin-top:2.5%; width:50%">
+                <div class="text"><font color="black">Robot Arm</font></div>
+            </div>
 
-<div class="w3-row w3-center w3-padding-16" style="margin:10px">
-  <div class="w3-third">
-	<h1>Documents</h1>
-	<a href="./Documents/EvidenceManual.pdf" class="w3-center" style="color:black" download = "T516_Evidence_Manual.pdf"><p>Evidence Manual<br></p></a>
-	<a href="./Documents/SpringProjectPlan.pdf" class="w3-center" style="color:black" download = "Spring_Project_Plan.pdf"><p>Spring Project Plan<br></p></a>
-	<a href="./Documents/RiskAssessment.pdf" class="w3-center" style="color:black" download = "Risk_Assessment.pdf"><p>Risk Assessment<br></p></a>
-	<a href="./Documents/BillofMaterials.pdf" class="w3-center" style="color:black" download = "BillofMaterials.pdf"><p>Bill of Materials<br></p></a>
-  </div>
-  <div class="w3-third">
-	<h1>Virtual Design Reviews</h1>
-	<a href="./Documents/VDR1.pdf" class="w3-center" style="color:black" download = "VDR1.pdf" ><p>VDR1 Presentation: October 8th, 2019<br> </p></a>
-	<a href="./Documents/VDR2.pdf" class="w3-center" style="color:black" download = "VDR2.pdf" ><p>VDR2 Presentation: November 5th, 2019<br> </p></a>
-	<a href="./Documents/VDR3.pdf" class="w3-center" style="color:black" download = "VDR3.pdf" ><p>VDR3 Presentation: November 24th, 2019<br> </p></a>
-	<a href="./Documents/VDR4.pdf" class="w3-center" style="color:black" download = "VDR4.pdf" ><p>VDR4 Presentation: February 4th, 2020<br> </p></a>
-	<a href="./Documents/VDR5.pdf" class="w3-center" style="color:black" download = "VDR5.pdf" ><p>VDR5 Presentation: November 24th, 2019<br> </p></a>
-	<a href="./Documents/VDR6.pdf" class="w3-center" style="color:black" download = "VDR6.pdf" ><p>VDR6 Presentation: March 3rd, 2020<br> </p></a>
-	<a href="./Documents/Poster2.pdf" class="w3-center" style="color:black" download = "Poster2.pdf" ><p>VDR6 Presentation: April 7th, 2020<br> </p></a>
-  </div>
-  <div class="w3-third">
-	<h1>CAD Model Files</h1>
-  </div>
-</div>
-<hr>
+            <div class="mySlides fade">
+                <div class="numbertext"><font color="black">3 / 3</font></div>
+                <img src="./Pictures/sus.png" style="margin-right:5%; margin-left:5%; margin-top:2.5%; width:50%">
+                <div class="text"><font color="black">Suspension System</font></div>
+            </div>
 
-<script>
+        </div>
+        <br>
 
-</script>
+        <div style="text-align:right; margin-right:25%">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </right>
+
+
+    <hr>
+    <div class="w3-row w3-container w3-center" style="font-size:36">
+        <p></p>
+    </div>
+    <div class="w3-row w3-container w3-center" style="font-size:42" id="teammembers">
+        <p class="w3-xxlarge">Team Members</p>
+    </div>
+    <div class="w3-row w3-container w3-center" style="font-size:36">
+        <p></p>
+    </div>
+    <hr>
+
+    <div id="buttons">
+        <div>
+            <a class="button w3-container w3-content w3-padding-large">
+                <p>Hannah Rodgers</p>
+                <img src="./w3images/Picture5.jpg" class="w3-round w3-margin-bottom" style="width:70%">
+                <p>Mechanical Engineering</p>
+            </a>
+        </div>
+
+        <div>
+            <a class="button w3-container w3-content w3-padding-large">
+                <p>Jacob Hackett</p>
+                <img src="./w3images/Picture1.jpg" class="w3-round w3-margin-bottom" style="width:70%">
+                <p>Mechanical Engineering</p>
+            </a>
+        </div>
+
+        <div>
+            <a class="button w3-container w3-content w3-padding-large">
+                <p>Noah Lang</p>
+                <img src="./w3images/Picture3.jpg" class="w3-round w3-margin-bottom" style="width:70%">
+                <p>Mechanical Engineering</p>
+            </a>
+        </div>
+
+        <div>
+            <a class="button w3-container w3-content w3-padding-large">
+                <p>Caleb Jansen</p>
+                <img src="./w3images/Picture2.jpg" class="w3-round w3-margin-bottom" style="width:70%">
+                <p>Computer Engineering</p>
+            </a>
+        </div>
+
+        <div>
+            <a class="button w3-container w3-contentw3-padding-large">
+                <p>Kyle Nulty</p>
+                <img src="./w3images/Picture4.jpg" class="w3-round w3-margin-bottom" style="width:70%">
+                <p>Computer Engineering</p>
+            </a>
+        </div>
+    </div>
+    <br>
+
+    <div class="w3-row w3-container w3-center" style="font-size:36">
+        <p></p>
+    </div>
+
+    <hr>
+    <div class="w3-row w3-container w3-center" style="font-size:42" id="Resources">
+        <p class="w3-xxlarge">Resources</p>
+    </div>
+    <div class="w3-row w3-container w3-center" style="font-size:36">
+        <p></p>
+    </div>
+    <hr>
+    <div class="w3-row w3-center w3-padding-16" style="margin:10px">
+        <div class="w3-half">
+            <h1>Documents</h1>
+            <a href="./Documents/EvidenceManual.pdf" class="w3-center" style="color:black" download="T516_Evidence_Manual.pdf">
+                <p>
+                    Evidence Manual
+                    <br>
+                </p>
+            </a>
+            <a href="./Documents/SpringProjectPlan.pdf" class="w3-center" style="color:black" download="Spring_Project_Plan.pdf">
+                <p>
+                    Spring Project Plan
+                    <br>
+                </p>
+            </a>
+            <a href="./Documents/RiskAssessment.pdf" class="w3-center" style="color:black" download="Risk_Assessment.pdf">
+                <p>
+                    Risk Assessment
+                    <br>
+                </p>
+            </a>
+            <a href="./Documents/BillofMaterials.pdf" class="w3-center" style="color:black" download="BillofMaterials.pdf">
+                <p>
+                    Bill of Materials
+                    <br>
+                </p>
+            </a>
+        </div>
+        <div class="w3-half">
+            <h1>Virtual Design Reviews</h1>
+            <a href="./Documents/VDR1.pdf" class="w3-center" style="color:black" download="VDR1.pdf">
+                <p>
+                    VDR1 Presentation: October 8th, 2019
+                    <br>
+                </p>
+            </a>
+            <a href="./Documents/VDR2.pdf" class="w3-center" style="color:black" download="VDR2.pdf">
+                <p>
+                    VDR2 Presentation: November 5th, 2019
+                    <br>
+                </p>
+            </a>
+            <a href="./Documents/VDR3.pdf" class="w3-center" style="color:black" download="VDR3.pdf">
+                <p>
+                    VDR3 Presentation: November 24th, 2019
+                    <br>
+                </p>
+            </a>
+            <a href="./Documents/VDR4.pdf" class="w3-center" style="color:black" download="VDR4.pdf">
+                <p>
+                    VDR4 Presentation: February 4th, 2020
+                    <br>
+                </p>
+            </a>
+            <a href="./Documents/VDR5.pdf" class="w3-center" style="color:black" download="VDR5.pdf">
+                <p>
+                    VDR5 Presentation: November 24th, 2019
+                    <br>
+                </p>
+            </a>
+            <a href="./Documents/VDR6.pdf" class="w3-center" style="color:black" download="VDR6.pdf">
+                <p>
+                    VDR6 Presentation: March 3rd, 2020
+                    <br>
+                </p>
+            </a>
+            <a href="./Documents/Poster2.pdf" class="w3-center" style="color:black" download="Poster2.pdf">
+                <p>
+                    VDR6 Presentation: April 7th, 2020
+                    <br>
+                </p>
+            </a>
+        </div>
+    </div>
+    <hr>
+
+    <!--Script for Slide Show-->
+    <script>
+    var slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      var dots = document.getElementsByClassName("dot");
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) {slideIndex = 1}
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex-1].style.display = "block";
+      dots[slideIndex-1].className += " active";
+      setTimeout(showSlides, 5000); // Change image every 5 seconds
+    }
+    </script>
+	<!--Script for Banner Fade-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript">
+
+            $(function() {
+
+                var documentEl = $(document),
+                    fadeElem = $('.banner');
+
+
+                documentEl.on('scroll', function() {
+                    var currScrollPos = documentEl.scrollTop();
+
+                    fadeElem.each(function() {
+                        var $this = $(this),
+                            elemOffsetTop = $this.offset().top;
+                        if (currScrollPos > elemOffsetTop) $this.css('opacity', 1 - (currScrollPos-elemOffsetTop)/400);
+                    });
+                });
+
+            });
+
+    </script>
+
+
 </body>
 </html>

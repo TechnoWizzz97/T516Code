@@ -1,0 +1,43 @@
+9
+
+dir
+1366
+https://projects.coin-or.org/svn/Ipopt/releases/3.5.4/Ipopt/examples
+https://projects.coin-or.org/svn/Ipopt
+
+
+
+2008-09-18T19:01:17.548819Z
+1327
+andreasw
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+ef2a96d0-92f8-0310-a3c1-cdaa70078a94
+
+hs071_c
+dir
+
+hs071_cpp
+dir
+
+hs071_f
+dir
+
+ScalableProblems
+dir
+
+Cpp_example
+dir
+

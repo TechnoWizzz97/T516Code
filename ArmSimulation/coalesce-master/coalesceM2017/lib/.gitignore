@@ -1,0 +1,7 @@
+# Ignore directories #
+######################
+
+
+knitro/
+snopt/
+snoptStudent/

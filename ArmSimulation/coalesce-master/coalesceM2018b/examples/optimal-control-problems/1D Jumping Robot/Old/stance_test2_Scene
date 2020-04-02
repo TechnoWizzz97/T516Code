@@ -1,0 +1,46 @@
+classdef stance_test2_Scene
+    properties
+  	h0@double % Lower height limit
+  	hf@double % Upper height limit
+  	uMax@double % Max thrust
+
+  	axes%@double
+  	ground@StripedLine
+  	spring@Spring
+    rod@Cylinder
+    motor@RoundedSquare
+    
+    response@Response
+    end
+    
+    methods
+        function obj = stance_test2_Scene(sys, response)
+            
+            obj = obj@Scene(response.time{1});
+            
+            obj.response = response;,.5)
+            
+            % Store parameters
+			obj.h0 = response.states{1}(1,1);
+			obj.hf = response.states{1}(end,1);
+			obj.uMax = max(response.inputs{1});
+		end % LunarLanderScene
+        
+        function obj = initialize(obj)
+		%INITIALIZE Initialize graphical objects.
+
+			% Store the axes handle we are plotting to
+            %a = gca;
+            %obj.axes = [a.XLim(1); a.YLim(1)];
+			obj.axes = gca;
+            
+            l=
+            obj.spring = Spring(0.25)
+            
+            
+            obj.ground = StripedLine(10, 0.125);
+			obj.ground.translate(-obj.ground.width/2, 0, 0);
+			obj.ground.update;
+
+            
+            

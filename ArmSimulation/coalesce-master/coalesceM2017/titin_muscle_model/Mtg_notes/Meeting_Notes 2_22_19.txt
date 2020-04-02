@@ -1,0 +1,43 @@
+mass of pulley may not be tuned right (?)
+    -make Mp an optimization parameter ??
+    
+best simulation?
+Kiisa suggested using an inverted pendulum model
+
+simulating a guinea fowl gastrocnemius - compound muscle
+
+activation signal precedes foot hitting the ground
+when no resistance to shortening, shortens very fast
+
+Kiisa IS using the F-V relationship
+
+Fact that muscle is activating for entire duration of shortening is a result of the unpredictability of when the foot will hit the ground
+
+Solve for different perturbations and find the most stable results
+
+Monica can grab parameters from other muscles ( medial gastrocnemius & soleus )
+
+If entire mass of triceps surae is known we would use all of the 'calf' muscles
+
+Titin Model IS NOT THE FULL MTU! JUST THE "M"
+
+'Twitch' delay time is ~20-25ms
+
+Kiisa interested in modeling length dependent properties of muscle
+
+Achilles tendon for guinea fowl parameters are well-documented
+
+Isotonic F-V relationship    ( isotonic - constant force )
+    - not the right relationship to use
+
+Hill model explains 35% variation in force
+    Titin Model explains 99% variation in force
+
+"Prediction of force on Hill Models is very poor" -Kiisa Nishikawa
+    -Very driven by activation
+    Activation is everything & length is almost nothing (for Hill)
+
+
+9:00am Turesday
+
+Fundamental question of why muscles activate the way they activate in the context of locomotion (early - & pre contact)

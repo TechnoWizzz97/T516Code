@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<SimscapeMultibodyImportXML version="2.0" xmlns="urn:mathworks:SimscapeMultibody:import" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Created by="" on="03/16/20||16:36:25" using="Simscape Multibody Link Version 6.1" from="SolidWorks 27.2.0"/>
+<ModelUnits mass="kilogram" length="millimeter"/>
+<DataUnits mass="kilogram" length="meter"/>
+<RootAssembly name="LewanSoul xArm Replica" uid="LewanSoul xArm Replica" version="162">
+<AssemblyFile name="LewanSoul xArm Replica.SLDASM" type="SolidWorks Assembly"/>
+<InstanceTree>
+<Instance name="LewanSoul Bicep-1" uid="LewanSoul Bicep-1" entityUid="LewanSoul Bicep*:*Default">
+<Transform>
+<Rotation>-0.82853804120022367 -0.15015396710673556 -0.53942423049600396 -0.1783228960346927 0.98397202437355935 -1.5006633067257636e-16 0.5307783520773024 0.096191690973332841 -0.84203414393585851</Rotation>
+<Translation>0.06138917953427675 0.51745132794407223 0.076251327752447737</Translation>
+</Transform>
+</Instance>
+<Instance name="LewanSoul Base Circle-1" uid="LewanSoul Base Circle-1" entityUid="LewanSoul Base Circle*:*Default">
+<Transform>
+<Rotation>0.53942423049600396 0 -0.8420341439358584 1.3122047765709929e-16 1 0 0.8420341439358584 -1.4623481560133344e-16 0.53942423049600396</Rotation>
+<Translation>0.03755223725608238 0.038656886813374924 0.091521758694464467</Translation>
+</Transform>
+</Instance>
+<Instance name="LewanSoul Forearm-1" uid="LewanSoul Forearm-1" entityUid="LewanSoul Forearm*:*Default">
+<Transform>
+<Rotation>0.78091430289898878 0.31495134716584411 0.53942423049600408 -0.37403631365076268 0.92741405859009285 0 -0.50026961490613697 -0.20176425066862477 0.84203414393585818</Rotation>
+<Translation>0.094524689037228632 2.1997981672338995 0.055024045171987196</Translation>
+</Transform>
+</Instance>
+<Instance name="Lewansoul Base-1" uid="Lewansoul Base-1" grounded="true" entityUid="Lewansoul Base*:*Default">
+<Transform>
+<Rotation>1 0 0 0 1 0 0 0 1</Rotation>
+<Translation>0.037552237256082407 0.038656886813374841 0.09152175869446405</Translation>
+</Transform>
+</Instance>
+<Instance name="LewanSoul Wrist-1" uid="LewanSoul Wrist-1" entityUid="LewanSoul Wrist*:*Default">
+<Transform>
+<Rotation>0.17884397584008002 0.82282217511410483 0.53942423049600441 -0.97718386010815161 0.21239515894702671 0 -0.11457109517607639 -0.52711665179195477 0.84203414393585818</Rotation>
+<Translation>0.063898721463020156 2.4605343993534148 0.074643664056671277</Translation>
+</Transform>
+</Instance>
+<Instance name="LewanSoul Hand Assem-1" uid="LewanSoul Hand Assem-1" entityUid="LewanSoul Hand Assem">
+<Transform>
+<Rotation>0.5470272686558133 -0.15402868397624697 -0.82282217511410471 -0.04461581328149853 0.97616480455971033 -0.21239515894702671 0.83592499457319214 0.15289682420327663 0.52711665179195499</Rotation>
+<Translation>0.66863374705084189 2.5982661846747837 -0.32798533238236882</Translation>
+</Transform>
+<Instance name="LewanSoul Grasper Link1-2" uid="LewanSoul Grasper Link1-2" entityUid="LewanSoul Grasper Link1*:*Default">
+<Transform>
+<Rotation>0.44638098606401588 0 -0.89484301152800927 0 0.99999999999999989 0 0.89484301152800927 0 0.44638098606401588</Rotation>
+<Translation>0.11112485797233129 0.17416600735874121 0.024700402074546934</Translation>
+</Transform>
+</Instance>
+<Instance name="LewanSoul Grasper Link2-2" uid="LewanSoul Grasper Link2-2" entityUid="LewanSoul Grasper Link2*:*Default">
+<Transform>
+<Rotation>0.61815488993703915 0 0.78605631607851556 0 1 0 -0.78605631607851534 0 0.61815488993703926</Rotation>
+<Translation>0.16956944674983634 0.17416600735874121 -0.20591937143625083</Translation>
+</Transform>
+</Instance>
+<Instance name="LewanSoul Hand-1" uid="LewanSoul Hand-1" grounded="true" entityUid="LewanSoul Hand*:*Default">
+<Transform>
+<Rotation>1 0 0 0 1 0 0 0 1</Rotation>
+<Translation>0.011906107972331326 0.015416007358740824 0.024700402074546934</Translation>
+</Transform>
+</Instance>
+<Instance name="LewanSoul Grasper Link3-1" uid="LewanSoul Grasper Link3-1" entityUid="LewanSoul Grasper Link3*:*Default">
+<Transform>
+<Rotation>0.42170040514281937 -1.1102230246251565e-16 0.90673522502568638 0 1 1.1102230246251565e-16 -0.90673522502568626 0 0.42170040514281948</Rotation>
+<Translation>-0.23952228206862225 0.13666600735874113 -0.34535733329019935</Translation>
+</Transform>
+</Instance>
+<Instance name="LewanSoul Grasper Link3-2" uid="LewanSoul Grasper Link3-2" entityUid="LewanSoul Grasper Link3*:*Default">
+<Transform>
+<Rotation>-0.41236812120432814 0 -0.91101730642969281 0 -0.99999999999999989 0 -0.91101730642969281 0 0.41236812120432803</Rotation>
+<Translation>0.26816347286503617 0.17416600735874166 -0.34171564568530788</Translation>
+</Transform>
+</Instance>
+<Instance name="LewanSoul Grasper Link2-1" uid="LewanSoul Grasper Link2-1" entityUid="LewanSoul Grasper Link2*:*Default">
+<Transform>
+<Rotation>0.60330164520682317 0 -0.79751308759840445 0 1 -1.0408340855860843e-16 0.79751308759840445 0 0.60330164520682317</Rotation>
+<Translation>-0.14339927820425186 0.17416600735874166 -0.20773813391503326</Translation>
+</Transform>
+</Instance>
+<Instance name="LewanSoul Grasper Link1-1" uid="LewanSoul Grasper Link1-1" entityUid="LewanSoul Grasper Link1*:*Default">
+<Transform>
+<Rotation>0.46250456851223548 -1.1102230246251565e-16 0.88661689816138234 1.2663481374630692e-16 1 0 -0.88661689816138223 0 0.46250456851223559</Rotation>
+<Translation>-0.087312642027668641 0.17416600735874121 0.024700402074546934</Translation>
+</Transform>
+</Instance>
+</Instance>
+</InstanceTree>
+<Constraints>
+<Concentric name="Concentric1">
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>Lewansoul Base-1</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>0 1 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>LewanSoul Base Circle-1</Uid>
+</InstancePath>
+<Position>0 0.3175 0</Position>
+<Axis>0 -1 0</Axis>
+</ConstraintGeometry>
+</Concentric>
+<Coincident name="Coincident1">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>Lewansoul Base-1</Uid>
+</InstancePath>
+<Position>0 0.3175 0</Position>
+<Axis>0 1 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>LewanSoul Base Circle-1</Uid>
+</InstancePath>
+<Position>0 0.3175 0</Position>
+<Axis>0 1 0</Axis>
+</ConstraintGeometry>
+</Coincident>
+<Concentric name="Concentric2">
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>LewanSoul Base Circle-1</Uid>
+</InstancePath>
+<Position>0.30388140302672884 0.63500000000000012 0</Position>
+<Axis>-1.0000000000000002 0 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>LewanSoul Bicep-1</Uid>
+</InstancePath>
+<Position>0 0.15875000000000017 0.34356890302672888</Position>
+<Axis>0 0 -1</Axis>
+</ConstraintGeometry>
+</Concentric>
+<Coincident name="Coincident3">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>LewanSoul Base Circle-1</Uid>
+</InstancePath>
+<Position>-0.079375000000000015 0.79375000000000007 0.15875</Position>
+<Axis>-1.0000000000000002 0 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>LewanSoul Bicep-1</Uid>
+</InstancePath>
+<Position>-0.5861974565663014 1.1102230246251565e-16 0.079374999999999959</Position>
+<Axis>0 0 -1</Axis>
+</ConstraintGeometry>
+</Coincident>
+<Concentric name="Concentric3">
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>LewanSoul Bicep-1</Uid>
+</InstancePath>
+<Position>0 1.1112500000000003 0.34356890302672888</Position>
+<Axis>0 0 -1</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>LewanSoul Forearm-1</Uid>
+</InstancePath>
+<Position>-1.1102230246251565e-16 -0.63500000000000001 -0.30388140302672872</Position>
+<Axis>0 0 0.99999999999999989</Axis>
+</ConstraintGeometry>
+</Concentric>
+<Coincident name="Coincident4">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>LewanSoul Bicep-1</Uid>
+</InstancePath>
+<Position>-0.5861974565663014 1.2700000000000002 0.079374999999999932</Position>
+<Axis>0 0 -1</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>LewanSoul Forearm-1</Uid>
+</InstancePath>
+<Position>-0.15874999999999995 -0.79375000000000018 -0.079374999999999973</Position>
+<Axis>0 0 -0.99999999999999989</Axis>
+</ConstraintGeometry>
+</Coincident>
+<Concentric name="Concentric4">
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>LewanSoul Forearm-1</Uid>
+</InstancePath>
+<Position>0 0.31749999999999989 -0.30388140302672872</Position>
+<Axis>0 0 0.99999999999999989</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>LewanSoul Wrist-1</Uid>
+</InstancePath>
+<Position>0 0.15874999999999995 0.34356890302672888</Position>
+<Axis>0 -1.1102230246251565e-16 -1</Axis>
+</ConstraintGeometry>
+</Concentric>
+<Coincident name="Coincident5">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>LewanSoul Forearm-1</Uid>
+</InstancePath>
+<Position>-0.15874999999999995 0.47624999999999984 -0.079374999999999973</Position>
+<Axis>0 0 -0.99999999999999989</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>LewanSoul Wrist-1</Uid>
+</InstancePath>
+<Position>-0.58619745656630151 0 -0.079374999999999973</Position>
+<Axis>0 1.1102230246251565e-16 1</Axis>
+</ConstraintGeometry>
+</Coincident>
+<Concentric name="Concentric5">
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>LewanSoul Wrist-1</Uid>
+</InstancePath>
+<Position>0 0.17236859697327123 0</Position>
+<Axis>-1.2490009027033011e-16 1.0000000000000002 1.1102230246251565e-16</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>LewanSoul Hand Assem-1</Uid>
+<Uid>LewanSoul Hand-1</Uid>
+</InstancePath>
+<Position>0 0.0048423063746807493 0.39687500000000009</Position>
+<Axis>0 0 -1</Axis>
+</ConstraintGeometry>
+</Concentric>
+<Coincident name="Coincident6">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>LewanSoul Wrist-1</Uid>
+</InstancePath>
+<Position>4.4408920985006262e-16 0.47625000000000006 0</Position>
+<Axis>-1.2490009027033011e-16 1.0000000000000002 1.1102230246251565e-16</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>LewanSoul Hand Assem-1</Uid>
+<Uid>LewanSoul Hand-1</Uid>
+</InstancePath>
+<Position>-0.079375000000000029 0.15875000000000039 0.23812499999999992</Position>
+<Axis>0 0 1</Axis>
+</ConstraintGeometry>
+</Coincident>
+</Constraints>
+</RootAssembly>
+<Assemblies>
+<Assembly name="LewanSoul Hand Assem" uid="LewanSoul Hand Assem" version="136">
+<ModelUnits mass="kilogram" length="millimeter"/>
+<AssemblyFile name="LewanSoul Hand Assem.SLDASM" type="SolidWorks Assembly"/>
+<Constraints>
+<Concentric name="Concentric1">
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>LewanSoul Hand-1</Uid>
+</InstancePath>
+<Position>-0.099218749999999994 0.15875 0</Position>
+<Axis>0 -1 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>LewanSoul Grasper Link1-1</Uid>
+</InstancePath>
+<Position>0 -0.15875 0</Position>
+<Axis>0 1 0</Axis>
+</ConstraintGeometry>
+</Concentric>
+<Coincident name="Coincident1">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>LewanSoul Hand-1</Uid>
+</InstancePath>
+<Position>0 0.15875 0</Position>
+<Axis>0 1 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>LewanSoul Grasper Link1-1</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>0 -1 0</Axis>
+</ConstraintGeometry>
+</Coincident>
+<Concentric name="Concentric2">
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>LewanSoul Hand-1</Uid>
+</InstancePath>
+<Position>-0.059531250000000001 0.15875 -0.10583333333333331</Position>
+<Axis>0 -1 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>LewanSoul Grasper Link2-1</Uid>
+</InstancePath>
+<Position>0.15875000000000003 0.037500000000000006 0</Position>
+<Axis>0 -1 0</Axis>
+</ConstraintGeometry>
+</Concentric>
+<Coincident name="Coincident2">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>LewanSoul Hand-1</Uid>
+</InstancePath>
+<Position>0 0.15875 0</Position>
+<Axis>0 1 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>LewanSoul Grasper Link2-1</Uid>
+</InstancePath>
+<Position>0.15875000000000003 0 0</Position>
+<Axis>0 -1 0</Axis>
+</ConstraintGeometry>
+</Coincident>
+<Concentric name="Concentric4">
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>LewanSoul Grasper Link1-1</Uid>
+</InstancePath>
+<Position>0 0.037500000000000006 -0.29437197392851155</Position>
+<Axis>0 -1 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>LewanSoul Grasper Link3-1</Uid>
+</InstancePath>
+<Position>-0.25796875000000002 0.037500000000000006 0</Position>
+<Axis>0 -1 0</Axis>
+</ConstraintGeometry>
+</Concentric>
+<Concentric name="Concentric5">
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>LewanSoul Grasper Link2-1</Uid>
+</InstancePath>
+<Position>-0.15875 0.037500000000000006 0</Position>
+<Axis>0 -1 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>LewanSoul Grasper Link3-1</Uid>
+</InstancePath>
+<Position>-0.0098396611480804919 0.037500000000000006 0.0049609374999999845</Position>
+<Axis>0 -1 0</Axis>
+</ConstraintGeometry>
+</Concentric>
+<Coincident name="Coincident3">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>LewanSoul Hand-1</Uid>
+</InstancePath>
+<Position>0 0.15875 0</Position>
+<Axis>0 1 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>LewanSoul Grasper Link3-1</Uid>
+</InstancePath>
+<Position>0 0.037500000000000006 0</Position>
+<Axis>0 1 0</Axis>
+</ConstraintGeometry>
+</Coincident>
+<Concentric name="Concentric6">
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>LewanSoul Hand-1</Uid>
+</InstancePath>
+<Position>0.099218749999999994 0.15875 0</Position>
+<Axis>0 -1 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>LewanSoul Grasper Link1-2</Uid>
+</InstancePath>
+<Position>0 -0.15875 0</Position>
+<Axis>0 1 0</Axis>
+</ConstraintGeometry>
+</Concentric>
+<Coincident name="Coincident4">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>LewanSoul Hand-1</Uid>
+</InstancePath>
+<Position>0 0.15875 0</Position>
+<Axis>0 1 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>LewanSoul Grasper Link1-2</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>0 -1 0</Axis>
+</ConstraintGeometry>
+</Coincident>
+<Concentric name="Concentric7">
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>LewanSoul Hand-1</Uid>
+</InstancePath>
+<Position>0.059531249999999994 0.15875 -0.10583333333333331</Position>
+<Axis>0 -1 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>LewanSoul Grasper Link2-2</Uid>
+</InstancePath>
+<Position>-0.15875000000000006 0.037500000000000006 0</Position>
+<Axis>0 -1 0</Axis>
+</ConstraintGeometry>
+</Concentric>
+<Coincident name="Coincident5">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>LewanSoul Hand-1</Uid>
+</InstancePath>
+<Position>0 0.15875 0</Position>
+<Axis>0 1 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>LewanSoul Grasper Link2-2</Uid>
+</InstancePath>
+<Position>0.15875000000000006 0 0</Position>
+<Axis>0 -1 0</Axis>
+</ConstraintGeometry>
+</Coincident>
+<Concentric name="Concentric8">
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>LewanSoul Grasper Link1-2</Uid>
+</InstancePath>
+<Position>0 0.037500000000000006 -0.29437197392851139</Position>
+<Axis>0 -1 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>LewanSoul Grasper Link3-2</Uid>
+</InstancePath>
+<Position>-0.25796875000000002 0.037500000000000006 0</Position>
+<Axis>0 -1 0</Axis>
+</ConstraintGeometry>
+</Concentric>
+<Concentric name="Concentric9">
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>LewanSoul Grasper Link2-2</Uid>
+</InstancePath>
+<Position>0.15875000000000006 0.037500000000000006 0</Position>
+<Axis>0 -1 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>LewanSoul Grasper Link3-2</Uid>
+</InstancePath>
+<Position>-0.0098396611480804919 0.037500000000000006 0.00496093750000004</Position>
+<Axis>0 -1 0</Axis>
+</ConstraintGeometry>
+</Concentric>
+<Coincident name="Coincident6">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>LewanSoul Hand-1</Uid>
+</InstancePath>
+<Position>0 0.15875 0</Position>
+<Axis>0 1 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>LewanSoul Grasper Link3-2</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>0 -1 0</Axis>
+</ConstraintGeometry>
+</Coincident>
+</Constraints>
+</Assembly>
+</Assemblies>
+<Parts>
+<Part name="LewanSoul Base Circle" uid="LewanSoul Base Circle*:*Default" version="170">
+<ModelUnits mass="kilogram" length="millimeter"/>
+<PartFile name="LewanSoul Base Circle.SLDPRT" type="SolidWorks Part"/>
+<MassProperties>
+<Mass>245.38214446840334</Mass>
+<CenterOfMass>0 0.18728029849195324 0</CenterOfMass>
+<Inertia>17.596553425389885 25.866148874691408 17.467682626601665 2.3517143586496485e-15 0 0</Inertia>
+</MassProperties>
+<GeometryFile name="LewanSoul Base Circle_Default_sldprt.STEP" type="STEP"/>
+<VisualProperties>
+<Ambient r="0" g="0.52941176470588236" b="1" a="1"/>
+<Diffuse r="0" g="0.52941176470588236" b="1" a="1"/>
+<Specular r="0" g="0.26470588235294118" b="0.5" a="1"/>
+<Emissive r="0" g="0" b="0" a="1"/>
+<Shininess>0.40000000596046448</Shininess>
+</VisualProperties>
+</Part>
+<Part name="LewanSoul Bicep" uid="LewanSoul Bicep*:*Default" version="240">
+<ModelUnits mass="kilogram" length="millimeter"/>
+<PartFile name="LewanSoul Bicep.SLDPRT" type="SolidWorks Part"/>
+<MassProperties>
+<Mass>33.431028785944662</Mass>
+<CenterOfMass>0 0.63500000000000012 0</CenterOfMass>
+<Inertia>3.4880298313338693 0.46388096970005099 3.5165356005670518 0 0 0</Inertia>
+</MassProperties>
+<GeometryFile name="LewanSoul Bicep_Default_sldprt.STEP" type="STEP"/>
+<VisualProperties>
+<Ambient r="0.792156862745098" g="0.81960784313725488" b="0.93333333333333335" a="1"/>
+<Diffuse r="0.792156862745098" g="0.81960784313725488" b="0.93333333333333335" a="1"/>
+<Specular r="0.396078431372549" g="0.40980392156862744" b="0.46666666666666667" a="1"/>
+<Emissive r="0" g="0" b="0" a="1"/>
+<Shininess>0.40000000596046448</Shininess>
+</VisualProperties>
+</Part>
+<Part name="LewanSoul Forearm" uid="LewanSoul Forearm*:*Default" version="179">
+<ModelUnits mass="kilogram" length="millimeter"/>
+<PartFile name="LewanSoul Forearm.SLDPRT" type="SolidWorks Part"/>
+<MassProperties>
+<Mass>44.574705047926209</Mass>
+<CenterOfMass>0 -0.15875 0</CenterOfMass>
+<Inertia>5.9396467741061425 0.43836797928251037 6.1973883716825853 0 0 0</Inertia>
+</MassProperties>
+<GeometryFile name="LewanSoul Forearm_Default_sldprt.STEP" type="STEP"/>
+<VisualProperties>
+<Ambient r="0.792156862745098" g="0.81960784313725488" b="0.93333333333333335" a="1"/>
+<Diffuse r="0.792156862745098" g="0.81960784313725488" b="0.93333333333333335" a="1"/>
+<Specular r="0.396078431372549" g="0.40980392156862744" b="0.46666666666666667" a="1"/>
+<Emissive r="0" g="0" b="0" a="1"/>
+<Shininess>0.40000000596046448</Shininess>
+</VisualProperties>
+</Part>
+<Part name="LewanSoul Grasper Link1" uid="LewanSoul Grasper Link1*:*Default" version="183">
+<ModelUnits mass="kilogram" length="millimeter"/>
+<PartFile name="LewanSoul Grasper Link1.SLDPRT" type="SolidWorks Part"/>
+<MassProperties>
+<Mass>1.9626482191911796</Mass>
+<CenterOfMass>0 -0.020524285884862326 -0.071175575455161899</CenterOfMass>
+<Inertia>0.027175918483239771 0.021943751690989066 0.0074158257743917556 0.0054863277531649194 0 0</Inertia>
+</MassProperties>
+<GeometryFile name="LewanSoul Grasper Link1_Default_sldprt.STEP" type="STEP"/>
+<VisualProperties>
+<Ambient r="0.25098039215686274" g="0.25098039215686274" b="0.25098039215686274" a="1"/>
+<Diffuse r="0.25098039215686274" g="0.25098039215686274" b="0.25098039215686274" a="1"/>
+<Specular r="0.12549019607843137" g="0.12549019607843137" b="0.12549019607843137" a="1"/>
+<Emissive r="0" g="0" b="0" a="1"/>
+<Shininess>0.40000000596046448</Shininess>
+</VisualProperties>
+</Part>
+<Part name="LewanSoul Grasper Link2" uid="LewanSoul Grasper Link2*:*Default" version="138">
+<ModelUnits mass="kilogram" length="millimeter"/>
+<PartFile name="LewanSoul Grasper Link2.SLDPRT" type="SolidWorks Part"/>
+<MassProperties>
+<Mass>0.61973007244674672</Mass>
+<CenterOfMass>0 0.018749999999999999 0</CenterOfMass>
+<Inertia>0.00022494264138378254 0.0054845078899757784 0.0054048144843217025 0 0 0</Inertia>
+</MassProperties>
+<GeometryFile name="LewanSoul Grasper Link2_Default_sldprt.STEP" type="STEP"/>
+<VisualProperties>
+<Ambient r="0.25098039215686274" g="0.25098039215686274" b="0.25098039215686274" a="1"/>
+<Diffuse r="0.25098039215686274" g="0.25098039215686274" b="0.25098039215686274" a="1"/>
+<Specular r="0.12549019607843137" g="0.12549019607843137" b="0.12549019607843137" a="1"/>
+<Emissive r="0" g="0" b="0" a="1"/>
+<Shininess>0.40000000596046448</Shininess>
+</VisualProperties>
+</Part>
+<Part name="LewanSoul Grasper Link3" uid="LewanSoul Grasper Link3*:*Default" version="267">
+<ModelUnits mass="kilogram" length="millimeter"/>
+<PartFile name="LewanSoul Grasper Link3.SLDPRT" type="SolidWorks Part"/>
+<MassProperties>
+<Mass>2.7134628609057185</Mass>
+<CenterOfMass>0.013729773417739318 0.018749999999999999 -0.052411302188065223</CenterOfMass>
+<Inertia>0.0054121302369548015 0.0934476751280683 0.088671512749138273 0 0.010753034498608337 0</Inertia>
+</MassProperties>
+<GeometryFile name="LewanSoul Grasper Link3_Default_sldprt.STEP" type="STEP"/>
+<VisualProperties>
+<Ambient r="0.25098039215686274" g="0.25098039215686274" b="0.25098039215686274" a="1"/>
+<Diffuse r="0.25098039215686274" g="0.25098039215686274" b="0.25098039215686274" a="1"/>
+<Specular r="0.12549019607843137" g="0.12549019607843137" b="0.12549019607843137" a="1"/>
+<Emissive r="0" g="0" b="0" a="1"/>
+<Shininess>0.40000000596046448</Shininess>
+</VisualProperties>
+</Part>
+<Part name="LewanSoul Hand" uid="LewanSoul Hand*:*Default" version="264">
+<ModelUnits mass="kilogram" length="millimeter"/>
+<PartFile name="LewanSoul Hand.SLDPRT" type="SolidWorks Part"/>
+<MassProperties>
+<Mass>16.736782189823391</Mass>
+<CenterOfMass>0 0.065382157819332931 0.10612924277391891</CenterOfMass>
+<Inertia>0.35867369930945503 0.40169219923440458 0.13837412931091195 0.049502006573454688 0 0</Inertia>
+</MassProperties>
+<GeometryFile name="LewanSoul Hand_Default_sldprt.STEP" type="STEP"/>
+<VisualProperties>
+<Ambient r="0.25098039215686274" g="0.25098039215686274" b="0.25098039215686274" a="1"/>
+<Diffuse r="0.25098039215686274" g="0.25098039215686274" b="0.25098039215686274" a="1"/>
+<Specular r="0.12549019607843137" g="0.12549019607843137" b="0.12549019607843137" a="1"/>
+<Emissive r="0" g="0" b="0" a="1"/>
+<Shininess>0.40000000596046448</Shininess>
+</VisualProperties>
+</Part>
+<Part name="LewanSoul Wrist" uid="LewanSoul Wrist*:*Default" version="248">
+<ModelUnits mass="kilogram" length="millimeter"/>
+<PartFile name="LewanSoul Wrist.SLDPRT" type="SolidWorks Part"/>
+<MassProperties>
+<Mass>12.002244140625001</Mass>
+<CenterOfMass>0 0.30318303989963552 0</CenterOfMass>
+<Inertia>0.32602769800131948 0.2170927629945355 0.34028058261791094 0 0 0</Inertia>
+</MassProperties>
+<GeometryFile name="LewanSoul Wrist_Default_sldprt.STEP" type="STEP"/>
+<VisualProperties>
+<Ambient r="0" g="0.52941176470588236" b="1" a="1"/>
+<Diffuse r="0" g="0.52941176470588236" b="1" a="1"/>
+<Specular r="0" g="0.26470588235294118" b="0.5" a="1"/>
+<Emissive r="0" g="0" b="0" a="1"/>
+<Shininess>0.40000000596046448</Shininess>
+</VisualProperties>
+</Part>
+<Part name="Lewansoul Base" uid="Lewansoul Base*:*Default" version="163">
+<ModelUnits mass="kilogram" length="millimeter"/>
+<PartFile name="Lewansoul Base.SLDPRT" type="SolidWorks Part"/>
+<MassProperties>
+<Mass>255.35078105217934</Mass>
+<CenterOfMass>0 0.15875000000000003 0</CenterOfMass>
+<Inertia>49.211520369163125 91.05729805123292 46.135936794143326 0 1.8431436932253579e-15 5.3087981100585208e-16</Inertia>
+</MassProperties>
+<GeometryFile name="Lewansoul Base_Default_sldprt.STEP" type="STEP"/>
+<VisualProperties>
+<Ambient r="0" g="0.52941176470588236" b="1" a="1"/>
+<Diffuse r="0" g="0.52941176470588236" b="1" a="1"/>
+<Specular r="0" g="0.26470588235294118" b="0.5" a="1"/>
+<Emissive r="0" g="0" b="0" a="1"/>
+<Shininess>0.40000000596046448</Shininess>
+</VisualProperties>
+</Part>
+</Parts>
+</SimscapeMultibodyImportXML>

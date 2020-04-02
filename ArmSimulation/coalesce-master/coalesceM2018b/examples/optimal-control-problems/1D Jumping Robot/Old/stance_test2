@@ -1,0 +1,138 @@
+close all
+clear all
+clc
+
+mr=10;%mass of rod
+mm=10;%mass of motor
+k=1;%spring const
+b=1;%damping const
+g=9.81;%gravity
+lo=1; %natural length of spring
+Wr=mr*g;
+Wm=mm*g;
+
+fM_init=2;
+fM_fin=-2;
+
+fM_up=2;
+fM_lwr=-fM_up;
+
+
+
+pde_method='Explicit Euler';
+nNodes=101;%number of nodes
+nlp=DirectCollocation(nNodes);
+
+t=nlp.addTime;
+
+%add input
+%this is the applied force resulting from the motor
+Fm=nlp.addInput(0, -Inf, Inf, 'Description', 'Input: f','Length',nNodes);
+
+
+%States
+zr=nlp.addState(0,-Inf,Inf,'Description','State: zr','Length',nNodes);
+dzr=nlp.addState(0,-Inf,Inf,'Description','State: dzr','Length',nNodes);
+
+zm=nlp.addState(0,-Inf,Inf,'Description','State: zm','Length',nNodes);
+dzm=nlp.addState(0,-Inf,Inf,'Description','State: dzm','Length',nNodes);
+% % 
+% % %forces
+% % Fs=k*(lo-zr)/mr;%force from spring
+% % Fs_init=k*(lo-zr.initial)/mr;%force from spring at initial
+% % Fs_fin=k*(lo-zr.final)/mr;%force from spring at end
+% % 
+% % Fd=b*dzr/mr; %force from damper
+% % Fd_init=b*dzr.initial/mr; %force from damper at initial
+% % Fd_fin=b*dzr.final/mr; %force from damper at final
+
+%pde constraints
+nlp.addPdeConstraint(zr,dzr,t,'Method',pde_method,...
+    'Description','dzr dynamics');
+
+nlp.addPdeConstraint(dzr, ((k*(lo-zr)+(b*dzm)-Fm-Wr)/mr),...
+    t,'Method',pde_method,'Description','ddzr dynamics');
+
+nlp.addPdeConstraint(zm,dzm,t,'Method',ped_method,...
+    'Description','dzm dynamics');
+
+nlp.addPdeConstrain(dzm,(Fm-Wm)/mm,t,'Method',ped_method,...
+    'Description','ddzm dynamics');
+
+%% normal constraints
+
+%force of the spring at liftoff (final point in stance) should be 0
+nlp.addConstraint(0,k*(lo-zr.final)/mr,0);
+
+%at touch down (initial position) zr height should equal natural spring
+%length
+nlp.addConstraint(0,zr.initial-lo,0);
+
+%at touch down (initial position) dzr velocity should be <= 0
+nlp.addConstraint(-Inf,dzr.initial,0);
+
+%Initial COM position = final COM position
+nlp.addConstraint(0,((mm*dzm.initial)+(mr*dzr.initial))-...
+    ((mm*dzm.initial)+(mr*dzr.initial)),0);
+
+Vel_com_init=(mm*dzm.initial)+(mr*dzr.initial);
+%%initial COM velocity = - Final COM velocity 
+nlp.addConstraint(2*Vel_com_init,((mm*dzm.initial)+(mr*dzr.initial))+...
+    ((mm*dzm.final)+(mr*dzr.final)),2*Vel_com_init);
+
+%% objectives and plots
+nlp.addObjective(trapz(f_m^2,t),'Description', 'Minimize F')
+% nlp.addOBjective(Pabs,'Descprition','integral(abs(F(t)*V(t)))')
+
+%% run optimizator
+optim = Ipopt(nlp);
+optim.export;
+optim.solve;
+
+
+%% obtain data from expressions
+fsol=squeeze(eval(Fm));
+tsol=linspace(0,squeeze(eval(t)),nNodes);
+zrsol=squeeze(eval(zr));
+dzrsol=squeeze(eval(dzr));
+zmsol=squeeze(eval(zm));
+dzmsol=squeeze(eval(dzm));
+
+COM_pos=m_m*zmsol+ m_r*zrsol;
+COM_vel=m_m*dzmsol+ m_r*dzrsol;
+
+F_s=k*(lo-zrsol);
+
+
+%% plot
+figure(1)
+plot(tsol,fsol)
+ylabel('F')
+
+figure(2)
+subplot(2,1,1)
+plot(tsol,zrsol)
+ylabel('zr')
+subplot(2,1,2)
+plot(tsol,dzrsol)
+ylabel('dzr')
+
+figure(3)
+subplot(2,1,1)
+plot(tsol,zmsol)
+ylabel('zm')
+subplot(2,1,2)
+plot(tsol,dzmsol)
+ylabel('dzm')
+
+figure(4)
+subplot(2,1,1)
+plot(tsol,COM_pos)
+ylabel('COM')
+subplot(2,1,2)
+plot(tsol,COM_vel)
+ylabel('dCom')
+
+figure(5)
+plot(tsol,F_s)
+ylabel('F_s')

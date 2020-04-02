@@ -1,0 +1,541 @@
+% Mass on a spring/damper
+%for ball2
+%added a second mass (motor) which will be applying the force that was seen
+%in ball 1. This will add 2 states and 2 Pde constraints
+
+
+close all
+clear all
+clc
+
+% exportStatus
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Constants%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% % % % mb=20; %mass of ball
+% % % % hb=1; %height of "ball" this is to adjust for zb not being the COM 
+% % % % mm=20; %mass of motor
+% % % % mf=1; %mass of foot
+% % % % k=1000;%spring const
+% % % % b=15;%damping 
+% % % % g=9.81;%gravity
+% % % % lo=5;%natural spring length
+% % % % init_vel=-2;
+
+%Masses
+mb=0.2; %mass of ball (kg)
+mm=1; %mass of motor
+mf=0.05; %mass of foot
+mp= 12/1000; %mass of propeller (12g)
+
+% Constants
+k=3000;%spring const N/m
+b=15;%damping 
+hp=0.05; %height of prop
+lp=0.2; %length of prop
+hb=0.3; % (m) height of "ball" this is to adjust for zb not being the COM 
+lo=0.05;%natural spring length
+g=9.81;%gravity
+
+
+%Desired values
+end_hgt=0.6; %(m)
+init_vel=-0.5
+
+Const_var=[hb, lo, hp, lp];
+
+
+%% %%%%%%%%%%%%%%%%%%%%%%%Start Coalesce%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% pde_method='trapezoidal'; %pde method
+pde_method='Explicit Euler'; %pde method
+nNodes=101;%number of nodes
+nlp=DirectCollocation(nNodes);
+
+t=nlp.addTime;
+T(1)=t;
+% t.initialGuess=1;
+% t.maxIterations=2000;
+% opt.max_iter         = 2000;
+
+I_s=1;
+I_f=2;
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%state%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% stance phase %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+I=1;
+
+%input F
+F(I_s)=nlp.addInput(0, -Inf, Inf, 'Description', 'Input: force','Length'...
+    ,nNodes);
+
+Thrust(I_s)=nlp.addInput(0, -Inf, Inf, 'Description', 'Input: Thrust',...
+    'Length',nNodes);
+
+%state for the ball/rod
+zb(I_s)=nlp.addState(0,-Inf,Inf,'Description','State: zb','Length',nNodes);
+
+dzb(I_s)=nlp.addState(0,-Inf,Inf,'Description','State: dzb','Length',...
+    nNodes);
+
+%states added in ball2
+%these states represent the addition of the motor
+zm(I_s)=nlp.addState(0,-Inf,Inf,'Description','State: zm','Length',nNodes);
+
+dzm(I_s)=nlp.addState(0,-Inf,Inf,'Description','State: dzm','Length',...
+    nNodes);
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Rotor%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+zrot(I_s)=nlp.addState(0,-Inf,Inf,'Description','State: zrot','Length',...
+    nNodes);
+% %
+dzrot(I_s)=nlp.addState(0,-Inf,Inf,'Description','State: dzrot','Length',...
+    nNodes);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% foot%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+zf(I_s) = nlp.addState(0,-Inf,Inf,'Description',...
+    'State: zf', 'Length', nNodes);
+
+dzf(I_s) = nlp.addState(0,-Inf,Inf,'Description',...
+    'State: dzf', 'Length', nNodes);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%flight phase%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% I = I + 1;
+
+F(I_f)=nlp.addInput(0, -Inf, Inf, 'Description', 'Input: force','Length'...
+    ,nNodes);
+
+Thrust(I_f)=nlp.addInput(0, -Inf, Inf, 'Description', 'Input: Thrust',...
+    'Length',nNodes);
+
+%ball/rod
+zb(I_f) = nlp.addState(0,-Inf,Inf,'Description','State: zb',...
+    'Length',nNodes);
+
+dzb(I_f) = nlp.addState(0,-Inf,Inf,'Description','State: dzb',...
+    'Length',nNodes);
+
+%states added in ball2
+%these states represent the addition of the motor
+zm(I_f) = nlp.addState(0,-Inf,Inf,'Description','State: zm',...
+    'Length',nNodes);
+
+dzm(I_f) = nlp.addState(0,-Inf,Inf,'Description','State: dzm',...
+    'Length',nNodes);
+
+% foot
+zf(I_f) = nlp.addState(0,-Inf,Inf,'Description',...
+    'State: zf', 'Length', nNodes);
+
+dzf(I_f) = nlp.addState(0,-Inf,Inf,'Description',...
+    'State: dzf', 'Length', nNodes);
+% % 
+% % ddzf(I_f) = nlp.addState(0,-Inf,Inf,'Description',...
+% %     'State: ddzf', 'Length', nNodes);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%Rotor%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+zrot(I_f)=nlp.addState(0,-Inf,Inf,'Description','State: zrot','Length',...
+    nNodes);
+% %
+dzrot(I_f)=nlp.addState(0,-Inf,Inf,'Description','State: dzrot','Length',...
+    nNodes);
+
+t=nlp.addTime;
+T(2)=T(1)+t;
+
+%%    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%PDE CONSTRAINTS%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%Stance%%%%%%%%%%%%%%%%%%%%%
+% I=1;
+
+%Rod
+nlp.addPdeConstraint(zb(I_s),dzb(I_s),T(I_s),'Method',pde_method,...
+    'Description','dzb dynamics');
+
+nlp.addPdeConstraint(dzb(I_s),(-F(I_s) + k*(lo - zb(I_s)) + b*(0 - ...
+    dzb(I_s)) - mb*g -Thrust(I_s))/mb,T(I_s),'Method',pde_method,...
+    'Description','ddzb dynamics');
+
+%Rod without thruster
+% nlp.addPdeConstraint(dzb(I_s),(-F(I_s) + k*(lo - zb(I_s)) + b*(0 - ...
+%     dzb(I_s)) - mb*g)/mb,T(I_s),'Method',pde_method,...
+%     'Description','ddzb dynamics');
+
+
+%motor
+nlp.addPdeConstraint(zm(I_s),dzm(I_s),T(I_s),'Method',pde_method,...
+    'Description','dzm dynamics');
+
+nlp.addPdeConstraint(dzm(I_s),(F(I_s)-(mm*g))/mm,T(I_s),'Method',...
+    pde_method,'Description','ddzm dynamics');
+
+%Prop
+nlp.addPdeConstraint(zrot(I_s),dzrot(I_s),T(I_s),'Method',...
+    pde_method,'Description','dzrot dynamics');
+
+nlp.addPdeConstraint(dzrot(I_s),(Thrust(I_s)-mp*g)/mp,T(I_s),'Method',...
+    pde_method,'Description','dzrot dynamics');
+
+
+%pde constraints for foot
+% For stance the Pde constraints for the foot is nonexistant because the
+% foot should not have any movement, velocity, or acceleration until the
+% hopper goes into flight phase. 
+% nlp.addPdeConstraint(zf(I_s),dzf(I_s),T(I_s),'Method',pde_method,...
+%     'Description','dzf dynamics');
+% nlp.addPdeConstraint(dzf(I_s),((k*(zb(I_s)-zf(I_s))+b*(dzb(I_s)-...
+%     dzf(I_s))+mf*g)/mf), T(I_s),'Method', pde_method,'Description',...
+%     'dzf dynamics');
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%FLIGHT%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%Rod
+nlp.addPdeConstraint(zb(I_f),dzb(I_f),T(I_f),'Method',pde_method,...
+    'Description','dzb dynamics');
+
+% %%%% Without thruster
+% nlp.addPdeConstraint(dzb(I_f), (-F(I_f) -mb*g)/mb ,...
+%     T(I_f),'Method',pde_method,'Description','dzb dynamics');
+
+nlp.addPdeConstraint(dzb(I_f), (-F(I_f) -mb*g -Thrust(I_f))/mb ,...
+    T(I_f),'Method',pde_method,'Description','dzb dynamics');
+
+
+%motor
+nlp.addPdeConstraint(zm(I_f),dzm(I_f),T(I_f),'Method',pde_method,...
+    'Description','dzm dynamics');
+
+nlp.addPdeConstraint(dzm(I_f),(F(I_f)-(mm*g))/mm,T(I_f),'Method',...
+    pde_method,'Description','dzm dynamics');
+
+%Foot
+nlp.addPdeConstraint(zf(I_f),dzf(I_f),T(I_f),'Method',pde_method,...
+    'Description','dzf dynamics');
+
+nlp.addPdeConstraint(dzf(I_f),(k*(lo-(zb(I_f)-zf(I_f)))+b*(dzb(I_f)-...
+    dzf(I_f))-mf*g)/mf,T(I_f),'Method',pde_method,'Description',...
+    'dzf dynamics');
+
+%Prop
+nlp.addPdeConstraint(zrot(I_f),dzrot(I_f),T(I_f),'Method',...
+    pde_method,'Description','dzrot dynamics');
+
+nlp.addPdeConstraint(dzrot(I_f),(Thrust(I_f)-mp*g)/mp,T(I_f),'Method',...
+    pde_method,'Description','dzrot dynamics');
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%constraints%%%%%%%%%%%%%%%%%%%%
+
+
+% % % % % % %%%%%%%%%%%%%%% STANCE CONSTRAINTS%%%%%%%%%%%%%%%%%%%%
+
+nlp.addConstraint(0,dzf(I_s),0);
+nlp.addConstraint(0,zf(I_s),0);
+
+%%%% Time Constraint%%%% 
+% nlp.addConstraint(0.25,T(I_s),Inf);
+% nlp.addConstraint(0.25,T(I_f),Inf);
+
+%need to constrain the motor to stay within a range of the rod/ball
+%since zb goes to the bottom of the ball/rod the lowest zm can go is zb
+%The motor cannot go higher than zb + the height of the ball/rod
+%currently have the motor of height lo so the lo is to make the whole of
+%the motor to stay below the top of the rod
+nlp.addConstraint(0,zm(I_s)-zb(I_s),hb-(lo));
+
+
+%initially zb is at natural length of spring
+nlp.addConstraint(0,lo-zb(I_s).initial,0);
+
+%%%%%takeoff condition, force at ground is 0   %%%%%
+nlp.addConstraint(0,k*(lo-zb(I_s).final)+b*(-dzb(I_s).final)-mf*g,0);
+% nlp.addConstraint(0,k*(lo-zb.final),0);
+
+%%%%% preventing zb and zm from going through ground%%%%%
+nlp.addConstraint(0.025,zb(I_s)-zf(I_s),Inf);
+
+%constrains prop to top of rotor
+nlp.addConstraint(hb,-zb(I_s)+zrot(I_s),hb);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%FLIGHT CONSTRAINTS%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%% set flight -> stance & stance -> flight conditions%%%%%%%%%%%%
+nlp.addConstraint(hb,-zb(I_f)+zrot(I_f),hb);
+
+
+
+% set initial flight velocities = final stance velocities
+nlp.addConstraint(0,dzb(I_f).initial - dzb(I_s).final,0)
+nlp.addConstraint(0,dzm(I_f).initial - dzm(I_s).final,0)
+nlp.addConstraint(0,dzf(I_f).initial - dzf(I_s).final,0)
+
+
+% set initial flight positions = final stance positions
+nlp.addConstraint(0,zb(I_f).initial - zb(I_s).final,0)
+nlp.addConstraint(0,zm(I_f).initial - zm(I_s).final,0)
+nlp.addConstraint(0,zf(I_f).initial - zf(I_s).final,0)
+
+
+
+
+%The foot cannot go higher than the base of the rod
+nlp.addConstraint(0,zb(I_f) - zf(I_f),Inf)
+
+%motor cannot leave the rod
+%currently have the motor of height lo so the lo is to make the whole of
+%the motor to stay below the top of the rod
+nlp.addConstraint(0,zm(I_f)-zb(I_f),hb-(lo));
+
+%Foot cannot go below ground
+nlp.addConstraint(0,zf(I_f),Inf)
+
+%Final height constraint
+nlp.addConstraint(end_hgt,zb(I_f).final,Inf)
+
+%%%%%%%%%
+%Need a third phase that will allow it to fall from max(zb) and switch back
+%to stance phase
+%set the final flight velocities = initial stance velocities
+% nlp.addConstraint(0,dzb(I_f).final - dzb(I_s).initial,0)
+% nlp.addConstraint(0,dzm(I_f).final - dzm(I_s).initial,0)
+% nlp.addConstraint(0,dzf(I_f).final - dzf(I_s).initial,0)
+
+%set the final flight positions = initial stance positions
+% nlp.addConstraint(0,zb(I_f).final - zb(I_s).initial,0)
+% nlp.addConstraint(0,zm(I_f).final - zm(I_s).initial,0)
+% nlp.addConstraint(0,zf(I_f).final - zf(I_s).initial,0)
+%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% objectives%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% nlp.addObjective(0, 'Description', 'Minimize Time');
+% nlp.addObjective(trapz(F^2,t),'Description', 'Minimize F');
+
+ nlp.addObjective(trapz(F(I_s)'*F(I_s), T(I_s)) + ...
+     trapz(F(I_f)'*F(I_f), T(I_f)) + ...
+     trapz(Thrust(I_s)'*Thrust(I_s),T(I_s)) + ...
+     trapz(Thrust(I_f)'*Thrust(I_f),T(I_f)),  ...
+    	'Description','Minimize force squared')
+
+% nlp.addObjective(Pabs,'Descprition','integral(abs(F(t)*V(t)))')
+
+
+%% %%%%%%%%%%%%%%%%%%%%run optimizator%%%%%%%%%%%%%%%%%%%%%%%
+% opt.max_iter         = 2000;
+optim = Ipopt(nlp);
+optim.export;
+optim.options.ipopt.max_iter = 1e3; %1.5e3;
+optim.solve;
+
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%Animation %%%%%%%%%%%%%%%%%%%%%%%%%%%
+tsol1=linspace(0,squeeze(eval(T(1))),nNodes);
+tsol2=linspace(0,squeeze(eval(T(2))),nNodes)+tsol1(end);
+
+zbsol=squeeze(eval(zb));
+dzbsol=squeeze(eval(dzb));
+
+zmsol=squeeze(eval(zm));
+dzmsol=squeeze(eval(dzm));
+
+zfsol=squeeze(eval(zf));
+dzfsol=squeeze(eval(dzf));
+
+%solves for the COM position and velocity
+
+%solves for applied force
+fsol=squeeze(eval(F));
+
+%Solves for applied thrust
+thrustsol=squeeze(eval(Thrust));
+
+%zf for just stance
+% zfsol=zeros(nNodes,1)';
+
+%zrot
+zrot_sol=squeeze(eval(zrot));
+dzrot_sol=squeeze(eval(dzrot));
+
+zgsol= zeros(size(zfsol(1,:)));
+test=zbsol-zfsol;
+% keyboard
+
+durations =T.eval;
+
+zb_vect=[];
+dzb_vect=[];
+zm_vect=[];
+dzm_vect=[];
+zf_vect=[];
+dzf_vect=[];
+time_vect=[];
+F_vect=[];
+zg_vect=[];
+phase_change=[];
+Fs_sol=[];
+Fd_sol=[];
+zrot_vect=[];
+dzrot_vect=[];
+thrust_vect=[];
+% keyboard
+
+for iter=1:numel(T)
+    time_vect=[time_vect,linspace(sum(durations(1:iter-1)),...
+        sum(durations(1:iter)),nNodes)];
+    
+    phase_change=[phase_change, length(time_vect)];
+    
+    zb_vect=[zb_vect, zbsol(iter,:)];
+    dzb_vect=[dzb_vect, dzbsol(iter,:)];
+    
+    zm_vect=[zm_vect, zmsol(iter,:)];
+    dzm_vect=[dzm_vect, dzmsol(iter,:)];
+    
+    zf_vect=[zf_vect, zfsol(iter,:)];
+    dzf_vect=[dzf_vect, dzfsol(iter,:)];
+    
+    zrot_vect=[zrot_vect, zrot_sol(iter,:)];
+    dzrot_vect=[dzrot_vect, dzrot_sol(iter,:)];
+    
+    F_vect=[F_vect, fsol(iter,:)];
+    
+    thrust_vect=[thrust_vect, thrustsol(iter,:)];
+    
+    
+    if(iter==1)
+        zg_vect=[zg_vect,zfsol(iter,:)];
+    else
+        zg_vect=[zg_vect,zfsol(iter-1,end)+0*zfsol(iter,:)];
+    end %end if(iter==1)
+end %for iter=1:numel(T)
+
+time_vect =time_vect +eps.*cumsum([1:numel(time_vect)]);
+tsol=time_vect;
+zmsol=zm_vect;
+zbsol=zb_vect;
+zgsol=zg_vect;
+zfsol=zf_vect;
+dzmsol=dzm_vect;
+dzbsol=dzb_vect;
+% dzgsol=dzg_vect;
+dzfsol=dzf_vect;
+fsol=F_vect;
+Fs_sol=[Fs_sol, k.*(lo-(zb_vect-zf_vect))];
+Fd_sol=[Fd_sol,b.*(dzf_vect-dzb_vect)];
+comsol=(((zbsol+0.5*hb)*mb + (zmsol*mm))/(mm+mb));
+comsolvel= (((dzbsol*mb) + (dzmsol*mm))/(mm+mb));
+
+%stance to flight changes
+t_change=tsol(phase_change(1));
+zm_change=zmsol(phase_change(1));
+zb_change=zbsol(phase_change(1));
+zg_change=zgsol(phase_change(1));
+zf_change=zfsol(phase_change(1));
+dzm_change=dzmsol(phase_change(1));
+dzb_change=dzbsol(phase_change(1));
+dzf_change=dzfsol(phase_change(1));
+f_change=fsol(phase_change(1));
+fs_change=Fs_sol(phase_change(1));
+fd_change=Fd_sol(phase_change(1));
+com_change=comsol(phase_change(1));
+dcom_change=comsolvel(phase_change(1));
+zrot_change=zrot_sol(phase_change(1));
+dzrot_change=dzrot_sol(phase_change(1));
+
+thrust_change=thrust_vect(phase_change(1));
+
+
+response = struct;
+response.time = {time_vect};
+response.zm = zm_vect;
+response.zb = zb_vect;
+response.zf = zf_vect;
+response.zg = zg_vect;
+response.zrot=zrot_vect;
+response.const=Const_var;
+% 
+% scene = ball2Scene(response);
+% Player(scene);
+% %%  %%%%%%%%%%%%%%%%%%%%%%%%%%%%plots%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % % % % % figure(1) 
+% % % % % % % plot(tsol,fsol,t_change,f_change,'.','MarkerSize',10)
+% % % % % % % ylabel('F_applied')
+% % % % % % % saveas(gcf,'Applied_Force.png')
+% % % % % % % 
+% % % % % % % figure(2)
+% % % % % % % subplot(2,1,1)
+% % % % % % % plot(tsol,zbsol,t_change,zb_change,'.','MarkerSize',10)
+% % % % % % % ylabel('Rod Position')
+% % % % % % % subplot(2,1,2)
+% % % % % % % plot(tsol,dzbsol,t_change,dzb_change,'.','MarkerSize',10)
+% % % % % % % ylabel('Rod Velocity')
+% % % % % % % saveas(gcf,'rod_pos_and_vel.png')
+% % % % % % % 
+% % % % % % % figure(3)
+% % % % % % % subplot(2,1,1)
+% % % % % % % plot(tsol,zmsol,t_change,zm_change,'.','MarkerSize',10)
+% % % % % % % ylabel('Motor Position')
+% % % % % % % subplot(2,1,2)
+% % % % % % % plot(tsol,dzmsol,t_change,dzm_change,'.','MarkerSize',10)
+% % % % % % % ylabel('Motor Velocity')
+% % % % % % % saveas(gcf,'motor_pos_and_vel.png')
+% % % % % % % % 
+% % % % % % % figure(4)
+% % % % % % % subplot(2,1,1)
+% % % % % % % plot(tsol,comsol,t_change,com_change,'.','MarkerSize',10)
+% % % % % % % ylabel('Center of Mass Position')
+% % % % % % % subplot(2,1,2)
+% % % % % % % plot(tsol,comsolvel,t_change,dcom_change,'.','MarkerSize',10)
+% % % % % % % ylabel('Center of Mass Velocity')
+% % % % % % % saveas(gcf,'COM_pos_and_vel.png')
+% % % % % % % % 
+% % % % % % % figure(5)
+% % % % % % % subplot(2,1,1)
+% % % % % % % plot(tsol,Fs_sol,t_change,fs_change,'.','MarkerSize',10)
+% % % % % % % ylabel('Force of spring')
+% % % % % % % subplot(2,1,2)
+% % % % % % % plot(tsol,Fd_sol,t_change,fd_change,'.','MarkerSize',10)
+% % % % % % % ylabel('Force of damper')    
+% % % % % % % saveas(gcf,'Spring_Force.png')    
+% % % % % % % 
+% % % % % % % 
+% % % % % % % figure(6)
+% % % % % % % subplot(2,1,1)
+% % % % % % % plot(tsol,zrot_vect,t_change,zrot_change,'.','MarkerSize',10)
+% % % % % % % ylabel('Rotor position')
+% % % % % % % subplot(2,1,2)
+% % % % % % % plot(tsol,dzrot_vect,t_change,dzrot_change,'.','MarkerSize',10)
+% % % % % % % ylabel('Rotor Velocity')    
+% % % % % % % saveas(gcf,'Rotor_pos_vel.png')    
+% % % % % % % 
+% % % % % % % 
+% % % % % % % figure(7) 
+% % % % % % % plot(tsol,thrust_vect,t_change,thrust_change,'.','MarkerSize',10)
+% % % % % % % ylabel('Thruster force')
+% % % % % % % saveas(gcf,'Thruster_Force.png')
+
+
+scene = ball2Scene(response);
+Player(scene);
+
+%% Attempt to export Player(scene)
+% % % % optimFile = 'optSand';
+% % % % robot_directory_name = 'control-export';
+% % % %     directory_name = 'saved-data';
+% % % %     right_now = datetime('now');
+% % % %     time_string = datestr(right_now,'yyyymmddTHHMMSS');
+% % % %     id_string = [optimFile, time_string];
